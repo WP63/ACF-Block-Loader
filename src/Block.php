@@ -16,8 +16,6 @@ abstract class Block {
   public function __invoke() {
     $settings = $this->register();
 
-    echo "<h1>Hello</h1>";
-
     /**
      * Immediate return false if name and title aren't specified
      */

@@ -9,7 +9,9 @@ Author URI: https://wp63.co
 License: GPLv2 or later
 Text Domain: acfbl
 */
-add_action('init', function() {
+require __DIR__ . '/vendor/autoload.php';
+
+add_action('acf/init', function() {
   $namespace = apply_filters('wp63/acf_block_namespace', 'WP63\Blocks\\');
   $directory = get_template_directory() . '/' . apply_filters('wp63/acf_block_directory', 'Blocks');
 
@@ -28,7 +30,7 @@ add_action('init', function() {
       if( class_exists( $namespace . $parts['filename'] ) ) {
         $classname = $namespace . $parts['filename'];
 
-        add_action( 'acf/init', new $classname );
+        call_user_func( new $classname );
       }
     }
   }
