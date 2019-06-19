@@ -2,7 +2,7 @@
     "name": "wp63/acf-block-loader",
     "description": "Wrapper class for easy ACF Gutenberg Block registration",
     "type": "package",
-    "license": "GPLv2 or later",
+    "license": "GPL-3.0-or-later",
     "authors": [
         {
             "name": "WP63",
