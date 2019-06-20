@@ -7,9 +7,11 @@ composer require wp63/acf-block-loader
 ```
 
 ## Usage
+By default, Class file should be stored in side `Blocks` directory in your theme root directory. Filename should be the same as Classname as in PSR-4. We recommend you to map namespace `WP63\Blocks\` to `Blocks` directory in PSR-4 Autoload in `composer.json` file.
+
 1. Create a class extending `WP63\Block`
 2. Class default namespace is `WP63\Blocks\`
-3. Class must have at least 2 method: `register()` and `render()`
+3. Class must have at least 2 methods: `register()` and `render()`
 ```php
 <?php
 namespace WP63\Blocks;
@@ -43,3 +45,14 @@ class MyBlock extends Block {
 * string `$this->content` The block inner HTML (empty).
 * boolean `$this->is_preview` True during AJAX preview.
 * int|string `$this->post_id` The post ID this block is saved to.
+
+## Filters
+* `wp63/acf_block_namespace` Change block namespace. Default: `WP63\Blocks\`
+* `wp63/acf_block_directory` Change directory name. Default: `./Blocks`
+
+In case you use this library with Sage 9, You will need to hook into `wp63/acf_block_directory` and change directory name.
+```php
+add_filter('wp63/acf_block_directory', function( $directory ) {
+    return '../app/Blocks';
+});
+```
