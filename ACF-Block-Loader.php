@@ -56,4 +56,6 @@ class BlockLoader {
   }
 }
 
-( new BlockLoader() );
+if( function_exists('add_action') ) {
+  ( new BlockLoader() );
+}
