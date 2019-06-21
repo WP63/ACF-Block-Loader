@@ -1,38 +1,54 @@
 <?php
-/*
-Plugin Name: ACF Block Loader
-Plugin URI: https://wp63.co/plugins/acf-block-loader/
-Description: Wrapper class for easy ACF Gutenberg Block registration
-Version: 1.0.0
-Author: WP63
-Author URI: https://wp63.co
-License: GPLv2 or later
-Text Domain: acfbl
-*/
+namespace WP63;
 
-if( function_exists('add_action') ) {
-  add_action('acf/init', function() {
-    $namespace = apply_filters('wp63/acf_block_namespace', 'WP63\Blocks\\');
-    $directory = get_template_directory() . '/' . apply_filters('wp63/acf_block_directory', 'Blocks');
+class BlockLoader {
+  public function __construct() {
+    $version = get_option('acf_version');
+    $compare = version_compare( $version, '5.8.0' );
 
-    if( !is_dir( $directory ) ) {
-      return;
-    }
+    add_action('admin_notices', function() use ( $compare ) {
+      if( !class_exists('ACF') || $compare === -1 ) {
+        $this->VersionNotice();
+      }
+    });
 
-    if( $handle = opendir( $directory ) ) {
-      while( false !== ( $filename = readdir( $handle ) )) {
-        if( $filename === '.' || $filename === '..' ) {
-          continue;
-        }
+    add_action('acf/init', function() use ( $compare ) {
+      $namespace = apply_filters('wp63/acf_block_namespace', 'WP63\Blocks\\');
+      $directory = get_template_directory() . '/' . apply_filters('wp63/acf_block_directory', 'Blocks');
 
-        $parts = pathinfo( $filename );
+      if( !class_exists('ACF') || $compare === -1 ) {
+        $this->VersionNotice();
+        return;
+      }
 
-        if( class_exists( $namespace . $parts['filename'] ) ) {
-          $classname = $namespace . $parts['filename'];
+      if( !is_dir( $directory ) ) {
+        return;
+      }
 
-          call_user_func( new $classname );
+      if( $handle = opendir( $directory ) ) {
+        while( false !== ( $filename = readdir( $handle ) )) {
+          if( $filename === '.' || $filename === '..' ) {
+            continue;
+          }
+
+          $parts = pathinfo( $filename );
+
+          if( class_exists( $namespace . $parts['filename'] ) ) {
+            $classname = $namespace . $parts['filename'];
+
+            call_user_func( new $classname );
+          }
         }
       }
-    }
-  });
+    });
+  }
+
+  private function VersionNotice() {
+    echo '
+    <div class="notice notice-warning">
+      <p><code>wp63/acf-block-loader</code> requires Advanced Custom Field PRO 5.8.0 or newer.</p>
+    </div>';
+  }
 }
+
+( new BlockLoader() );
