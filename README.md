@@ -15,7 +15,7 @@ By default, Class file should be stored in side `Blocks` directory (or `app/Bloc
 3. Class must have at least 2 methods: `register()` and `render()`
 ```php
 <?php
-namespace WP63\Blocks;
+namespace App\Blocks;
 
 use WP63\Block;
 
@@ -48,7 +48,7 @@ class MyBlock extends Block {
 * int|string `$this->post_id` The post ID this block is saved to.
 
 ## Filters
-* `wp63/acf_block_namespace` Change block namespace. Default: `WP63\Blocks\`
+* `wp63/acf_block_namespace` Change block namespace. Default: `App\Blocks\`
 * `wp63/acf_block_directory` Change directory name. Default: `./Blocks`
 
 In case you use this library with Sage 9, You will need to hook into `wp63/acf_block_directory` and change directory name.

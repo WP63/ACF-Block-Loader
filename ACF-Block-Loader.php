@@ -15,7 +15,7 @@ class BlockLoader {
     });
 
     add_action('acf/init', function() use ( $compare ) {
-      $namespace = apply_filters('wp63/acf_block_namespace', 'WP63\Blocks\\');
+      $namespace = apply_filters('wp63/acf_block_namespace', 'App\Blocks\\');
       $directory = get_template_directory() . '/' . apply_filters('wp63/acf_block_directory', 'Blocks');
 
       if( !class_exists('ACF') || $compare === -1 ) {
