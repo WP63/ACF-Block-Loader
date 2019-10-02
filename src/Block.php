@@ -51,7 +51,7 @@ abstract class Block {
    */
   public function PrepareRender( $block, $content = '', $is_preview = false, $post_id = 0 ) {
     $this->$block = $block;
-    $this->$post = $post;
+    $this->$content = $content;
     $this->$is_preview = $is_preview;
     $this->$post_id = $post_id;
 
