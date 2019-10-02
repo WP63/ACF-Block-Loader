@@ -1,6 +1,4 @@
 <?php
-namespace WP63;
-
 add_action( 'admin_notices', function () {
   $version = get_option('acf_version');
   $required_version = '5.8.0';
