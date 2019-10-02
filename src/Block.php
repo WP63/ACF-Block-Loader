@@ -22,7 +22,7 @@ abstract class Block {
    */
   abstract protected function render();
 
-  public static function init() {
+  public function init() {
     $settings = $this->register();
 
     /**
