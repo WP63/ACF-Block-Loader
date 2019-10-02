@@ -1,15 +1,11 @@
 <?php
 namespace WP63;
 
-use function App\template;
-
 abstract class Block {
   protected $block;
-  protected $post;
+  protected $content;
   protected $is_preview;
   protected $post_id;
-  protected $template;
-  protected $name;
 
   /**
    * Abstract method for block initialization
