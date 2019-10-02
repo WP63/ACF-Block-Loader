@@ -1,11 +1,15 @@
 <?php
 namespace WP63;
 
+use function App\template;
+
 abstract class Block {
   protected $block;
-  protected $content;
+  protected $post;
   protected $is_preview;
   protected $post_id;
+  protected $template;
+  protected $name;
 
   /**
    * Abstract method for block initialization
@@ -61,6 +65,19 @@ abstract class Block {
     $this->$is_preview = $is_preview;
     $this->$post_id = $post_id;
 
-    $this->render();
+    $is_sage = apply_filters( 'wp63/is_sage', false );
+
+    if ( $is_sage ) {
+      $data = $this->render();
+      $template = $this->template;
+
+      if ( !$template ) {
+        $template = "blocks.{$this->name}";
+      }
+
+      echo template( $template, $data );
+    } else {
+      $this->render();
+    }
   }
 }
