@@ -8,8 +8,8 @@ abstract class Block {
   protected $post;
   protected $is_preview;
   protected $post_id;
-  protected $template;
-  protected $name;
+  protected $block_template;
+  protected $block_name;
 
   /**
    * Abstract method for block initialization
@@ -47,10 +47,10 @@ abstract class Block {
         'render_callback'   => [$this, 'PrepareRender'],
       ]);
 
-      $this->name = $settings['name'];
+      $this->block_name = $settings['name'];
 
       if ( isset( $settings['template'] ) ) {
-        $this->template = $settings['template'];
+        $this->block_template = $settings['template'];
       }
     }
   }
@@ -69,10 +69,10 @@ abstract class Block {
 
     if ( $is_sage ) {
       $data = $this->render();
-      $template = $this->template;
+      $template = $this->block_template;
 
       if ( !$template ) {
-        $template = "blocks.{$this->name}";
+        $template = "blocks.{$this->block_name}";
       }
 
       echo template( $template, $data );
