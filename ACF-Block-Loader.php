@@ -31,7 +31,7 @@ add_action( 'acf/init', function () {
       if( class_exists( $namespace . $parts['filename'] ) ) {
         $classname = $namespace . $parts['filename'];
 
-        $classname::Init();
+        (new $classname)->init();
       }
     }
   }
