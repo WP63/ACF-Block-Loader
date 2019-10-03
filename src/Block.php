@@ -47,7 +47,6 @@ abstract class Block {
    * Run before actual rendering method. Use for manipulating all repetitive data from ACF.
    */
   public static function PrepareRender( $block, $content = '', $is_preview = false, $post_id = 0 ) {
-    $is_sage = apply_filters( 'wp63/is_sage', false );
     $options = (object) [
       'block' => $block,
       'content' => $content,
@@ -60,13 +59,10 @@ abstract class Block {
     do_action( 'wp63/before_block_render', $options );
     do_action( "wp63/before_block_render/{$block_name}", $options );
 
-    if ( $is_sage ) {
-      $data = static::render( $options );
+    if ( $data = static::render( $options ) ) {
       $template = "blocks.{$block_name}";
 
       echo template( $template, $data );
-    } else {
-      static::render( $options );
     }
 
     do_action( 'wp63/after_block_render', $options );
