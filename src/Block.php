@@ -48,7 +48,7 @@ abstract class Block {
    */
   public static function PrepareRender( $block, $content = '', $is_preview = false, $post_id = 0 ) {
     $is_sage = apply_filters( 'wp63/is_sage', false );
-    $options = [
+    $options = (object) [
       'block' => $block,
       'content' => $content,
       'is_preview' => $is_preview,
