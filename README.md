@@ -53,6 +53,12 @@ class MyBlock extends Block {
 * `wp63/acf_block_directory` Change directory name. Default: `./Blocks`
 * `wp63/is_sage` Wether this library is using with [Sage 9](https://github.com/roots/sage) or not
 
+## Actions
+* `wp63/before_block_render` Before each block is rendered
+* `wp63/before_block_render/{$block_name}` Before `$block_name` is rendered
+* `wp63/after_block_render` After each block is rendered
+* `wp63/after_block_render/{$block_name}` After `$block_name` is rendered
+
 In case you use this library with Sage 9, You will need to hook into `wp63/acf_block_directory` and change directory name.
 ```php
 add_filter('wp63/acf_block_directory', function( $directory ) {
