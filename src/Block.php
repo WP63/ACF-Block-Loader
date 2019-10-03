@@ -57,6 +57,9 @@ abstract class Block {
 
     $block_name = explode( '/', $block['name'] )[1];
 
+    do_action( 'wp63/before_block_render', $options );
+    do_action( "wp63/before_block_render/{$block_name}", $options );
+
     if ( $is_sage ) {
       $data = static::render( $options );
       $template = "blocks.{$block_name}";
@@ -65,5 +68,9 @@ abstract class Block {
     } else {
       static::render( $options );
     }
+
+    do_action( 'wp63/after_block_render', $options );
+    do_action( "wp63/after_block_render/{$block_name}", $options );
+
   }
 }
