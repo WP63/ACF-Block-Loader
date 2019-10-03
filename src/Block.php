@@ -8,7 +8,7 @@ abstract class Block {
    * Abstract method for block initialization
    * @return  array     method MUST return an array contains key `name` as block unique name, and `title` as block actual name
    */
-  abstract protected function register() : array;
+  abstract protected function register();
 
   /**
    * Abstract method for rendering
@@ -71,6 +71,5 @@ abstract class Block {
 
     do_action( 'wp63/after_block_render', $options );
     do_action( "wp63/after_block_render/{$block_name}", $options );
-
   }
 }
