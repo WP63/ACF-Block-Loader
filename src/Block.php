@@ -8,7 +8,7 @@ abstract class Block {
    * Abstract method for block initialization
    * @return  array     method MUST return an array contains key `name` as block unique name, and `title` as block actual name
    */
-  abstract protected function register();
+  abstract protected function register() : array;
 
   /**
    * Abstract method for rendering
