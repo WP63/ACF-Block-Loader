@@ -59,7 +59,7 @@ abstract class Block {
     do_action( 'wp63/before_block_render', $options );
     do_action( "wp63/before_block_render/{$block_name}", $options );
 
-    if ( $data = static::render( $options ) ) {
+    if ( is_array( $data = static::render( $options ) ) ) {
       $template = "blocks.{$block_name}";
 
       echo template( $template, $data );
