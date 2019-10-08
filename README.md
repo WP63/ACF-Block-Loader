@@ -65,7 +65,7 @@ add_filter('wp63/acf_block_directory', function( $directory ) {
 });
 ```
 
-## Use with Balde template engine in Sage 9
+## Use with Blade template engine in Sage 9
 In version 1.2.0, `wp63/acf-block-loader` has built-in support for Blade template engine in Sage 9. ~~Just hook into `wp63/is_sage` and change value to `TRUE`~~
 
 Meh, You can either just echo output directly from `Block::render()` method, or return an array. The returned array will be passed to corresponding blade template.
