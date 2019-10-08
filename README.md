@@ -32,6 +32,12 @@ class MyBlock extends Block {
     ...
     display block html
     ...
+
+    // Or Alternatively, return an array for Blade template engine in Sage 9
+    return [
+      'name' => 'value',
+      'foo' => 'bar',
+    ];
   }
 }
 ```
