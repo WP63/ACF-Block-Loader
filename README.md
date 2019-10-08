@@ -40,7 +40,7 @@ class MyBlock extends Block {
 * `$name` block-unique-name
 * `$title` Block Title
 * `$category` Block category. Predefined categories are [ common | formatting | layout | widgets | embed ] _(Optional)_
-* `$template` Template file name to use with Sage 9 _(Optional. ignored if `wp63/is_sage` set to `FALSE`)_
+* ~~`$template` Template file name to use with Sage 9 _(Optional. ignored if `wp63/is_sage` set to `FALSE`)_~~ __not usable at the moment~~
 
 `render()` is the static method for rendering actual block. Every output generated inside this method will be part of block html. Render method will have access to 4 callback arguments from ACF via `$options` arguments
 * array `$options->block` The block settings and attributes.
