@@ -29,11 +29,12 @@ class MyBlock extends Block {
   }
 
   public static function render( $options ) {
+    // You can directly render HTML within `render()` method
     ...
     display block html
     ...
 
-    // Or Alternatively, return an array for Blade template engine in Sage 9
+    // Or alternatively, return an array for Blade template engine in Sage 9
     return [
       'name' => 'value',
       'foo' => 'bar',
