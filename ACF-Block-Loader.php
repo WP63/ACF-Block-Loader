@@ -15,7 +15,14 @@ if( function_exists( 'add_action' ) ) {
 
   add_action( 'acf/init', function () {
     $namespace = apply_filters('wp63/acf_block_namespace', 'App\Blocks\\');
-    $directory = get_template_directory() . '/' . apply_filters('wp63/acf_block_directory', 'Blocks');
+    $block_directory = apply_filters('wp63/acf_block_directory', 'Blocks');
+
+    // Detect Sage
+    if ( function_exists('App\sage') ) {
+      $directory = App\config('theme.dir') . '/app/' . $block_directory;
+    } else {
+      $directory = get_template_directory() . '/' . $block_directory;
+    }
 
     if( !is_dir( $directory ) ) {
       return;
