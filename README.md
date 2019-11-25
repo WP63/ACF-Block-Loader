@@ -24,7 +24,8 @@ class MyBlock extends Block {
     return [
       'name' => $name,
       'title' => $title,
-      'category' => $category
+      'category' => $category,
+      'fields' => $fields,
     ];
   }
 
@@ -47,6 +48,7 @@ class MyBlock extends Block {
 * `$name` block-unique-name
 * `$title` Block Title
 * `$category` Block category. Predefined categories are [ common | formatting | layout | widgets | embed ] _(Optional)_
+* `$fields` ACF Field. Can either be ACF settings or `StoutLogic\AcfBuilder\FieldsBuilder` object
 
 `render()` is the static method for rendering actual block. Every output generated inside this method will be part of block html. Render method will have access to 4 callback arguments from ACF via `$options` arguments
 * array `$options->block` The block settings and attributes.

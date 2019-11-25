@@ -21,7 +21,7 @@ abstract class Block {
     /**
      * Immediate return false if name and title aren't specified
      */
-    if( !isset( $settings['name'] ) || !isset( $settings['title'] ) ) {
+    if ( !isset( $settings['name'] ) || !isset( $settings['title'] ) ) {
       return false;
     }
 
@@ -32,13 +32,17 @@ abstract class Block {
     /**
      * Register block
      */
-    if( function_exists('acf_register_block_type') ) {
+    if ( function_exists('acf_register_block_type') ) {
       acf_register_block_type([
         'name'              => $settings['name'],
         'title'             => $settings['title'],
         'category'          => $settings['category'],
         'render_callback'   => get_called_class() . '::PrepareRender',
       ]);
+
+      if ( isset( $settings['fields'] ) ) {
+        acf_add_local_field_group( $settings['fields'] );
+      }
     }
   }
 
