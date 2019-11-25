@@ -36,8 +36,8 @@ class MyBlock extends Block {
 
     // Or alternatively, return an array for Blade template engine in Sage 9
     return [
-      'name' => 'value',
-      'foo' => 'bar',
+      'name' => 'value', // $name in template file
+      'foo' => 'bar', // $foo in template file
     ];
   }
 }
@@ -57,6 +57,7 @@ class MyBlock extends Block {
 ## Filters
 * `wp63/acf_block_namespace` Change block namespace. Default: `App\Blocks\`
 * `wp63/acf_block_directory` Change directory name. Default: `./Blocks`
+* `wp63/acf_block_template_directory` Change Blade template directory. relative to `/views` directory Default: `blocks`
 
 ## Actions
 * `wp63/before_block_render` Before each block is rendered
@@ -72,8 +73,5 @@ add_filter('wp63/acf_block_directory', function( $directory ) {
 ```
 
 ## Use with Blade template engine in Sage 9
-In version 1.2.0, `wp63/acf-block-loader` has built-in support for Blade template engine in Sage 9. ~~Just hook into `wp63/is_sage` and change value to `TRUE`~~
-
-Meh, You can either just echo output directly from `Block::render()` method, or return an array. The returned array will be passed to corresponding blade template.
-
-To make it work with return method, create a template file with the same name as the block itself (`$name` value) and put it in `views/blocks`
+1. In class `render()` method, instead of echo output directly, return an array contains all data to be exposed to Blade template file.
+2. Create template file in `views/blocks` the file name must be the same as block nam3 (`$name`). for example: `views/blocks/hero-banner.blade.php`

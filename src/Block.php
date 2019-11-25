@@ -60,7 +60,9 @@ abstract class Block {
     do_action( "wp63/before_block_render/{$block_name}", $options );
 
     if ( is_array( $data = static::render( $options ) ) ) {
-      $template = "blocks.{$block_name}";
+      $template_path = apply_filters( 'wp63/acf_block_template_directory', 'blocks' );
+
+      $template = "{$template_path}.{$block_name}";
 
       echo template( $template, $data );
     }
